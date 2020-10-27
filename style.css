@@ -1,0 +1,43 @@
+
+header {
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.flex {
+    display : flex;
+}
+.vertical {
+    flex-direction: column;
+}
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+#textbox {
+    width: 50%;
+    min-width: 15rem;
+    margin-bottom: 2rem;
+}
+#player-info {
+    height: 2rem;
+}
+#button-3 {
+    display: none;
+}
+.character-img {
+    width: 5rem;
+    border-radius: 5rem;
+}
+button {
+    width: 20rem;
+    border: 0.2rem solid blue;
+    border-radius: 1rem;
+    font-weight: bold;
+    background-color: lightskyblue;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
