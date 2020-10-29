@@ -1,13 +1,16 @@
+/**
+ * A function that picks out the correct scene description and choices for each scene
+ */
 
 function getScene() {
     switch(currentScene){
+ // THE BEGINNING 1-3       
         case 0: 
             return {
-                description: "It's a beautiful, sunny autumn day. You have just left the Fluffy Guinea Pig Village, and there is a road straight ahead of you. To the left is a huge field of grass, and to the right is a forest. What will you do?",
-                choices: ["Go straight", "Go left", "Go right"],
-                nextScene: [1, 2, 3]
-            }
-// THE BEGINNING 1-3            
+                description: "You are " + playerID + ", a very brave and fluffy guinea pig on a mission. The mission is to gather enough carrots to save your village, the Fluffy Guinea Pig Village, from starvation during the winter. You need to find 5 carrots to complete your mission and return to your village as a true hero. <br><br> It's a beautiful, sunny autumn day. You have just left the Fluffy Guinea Pig Village, and there is a road straight ahead of you. To the left is a huge field of grass, and to the right is a forest. What will you do?",
+                choices: ["⬅️ Go left", "Go straight ⬆️", "Go right ➡️"],
+                nextScene: [2, 1, 3]
+            }            
         case 1:
             return {
                 description: "After walking for a while, you notice someone coming towards you. It looks like a large animal. What do you do?",
@@ -29,7 +32,7 @@ function getScene() {
 // THE ROAD 4-9
         case 4: 
             return {
-                description: "Today is your lucky day! The animal was a friendly capybara. She offers you a carrot. What do you do?",
+                description: "Luckily enough, the animal turned out to be a friendly capybara. The capybara offers you a carrot. 🥕 What do you do?",
                 choices: ["Eat carrot", "Put carrot in backpack"],
                 nextScene: [7, 8]
             }
@@ -41,22 +44,21 @@ function getScene() {
             }
         case 6:
             return {
-                description: "The capybara is very kind and offers you a carrot. What do you do?",
+                description: "The capybara is very kind and offers you a carrot 🥕. What do you do?",
                 choices: ["Eat carrot", "Put carrot in backpack"],
-                nextScene:[7, 8]
+                nextScene: [7, 8]
             }
         case 7:
             return {
-                description: "The carrot was delicious! But don't forget about your mission. You still have to find " + printCarrotsLeft() + " to bring back to your village.",
-                choices: ["Continue"],
-                nextScene: [9]
+                description: "The carrot was delicious! But don't forget about your mission. You still have to find " + printCarrotsLeft() + " to bring back to your village. What do you do?",
+                choices: ["Continue on the road", "Go back and enter the forest", "Go back and enter the field of grass"],
+                nextScene: [9, 2, 3]
             }
-        case 8:
-    
+        case 8:  
             return {
-                description: "Congratulations! You now have " + printCarrots(++carrots) + " in your backpack. Only " + printCarrotsLeft() + " left until mission is finished.",
-                choices: ["Continue"],
-                nextScene: [9]
+                description: "Well done! You now have " + printCarrots(1) + " in your backpack. Only " + printCarrotsLeft() + " left until mission is finished. What do you do?",
+                choices: ["Continue on the road", "Go back and enter the forest", "Go back and enter the field of grass"],
+                nextScene: [9, 2, 3]
             }
         case 9:
             return {
@@ -99,7 +101,7 @@ function getScene() {
             }
         case 15:
             return {
-                description:"You now have " + printCarrots(++carrots) + " in your backpack. Only " + printCarrotsLeft() + " left until you have finished your mission.",
+                description: "You now have " + printCarrots(1) + " in your backpack. Only " + printCarrotsLeft() + " left until you have finished your mission.",
                 choices: ["Go to the cottage", "Go back to the road"],
                 nextScene: [16, 22]
             }
@@ -131,7 +133,7 @@ function getScene() {
             }
         case 20:
             return {
-                description: "You manage to grab a carrot and put it in your backpack. Success! You now have " + printCarrots(++carrots) + " in your backpack. The cat seems to be moving a little. What do you do?",
+                description: "You manage to grab a carrot and put it in your backpack. Success! You now have " + printCarrots(1) + " in your backpack. The cat seems to be moving a little. What do you do?",
                 choices: ["Grab another carrot", "Sneak out as quietly as possible"],
                 nextScene: [21, 17]             
             }
@@ -173,7 +175,7 @@ function getScene() {
             }
         case 27:
             return {
-                description:"Well done! You now have " + printCarrots(++carrots) + " in your backpack. Only " + printCarrotsLeft() + " left until you have finished your mission.",
+                description:"Well done! You now have " + printCarrots(1) + " in your backpack. Only " + printCarrotsLeft() + " left until you have finished your mission.",
                 choices: ["Continue back to the main road"],
                 nextScene: [22]
             }
@@ -210,7 +212,7 @@ function getScene() {
             }
         case 33:
             return {
-                description:"Well done! You now have " + printCarrots(++carrots) + " in your backpack. Only " + printCarrotsLeft() + " left until you have finished your mission. But the forest is too scary, let's find the carrots somewhere else.",
+                description:"Well done! You now have " + printCarrots(1) + " in your backpack. Only " + printCarrotsLeft() + " left until you have finished your mission. But the forest is too scary, let's find the carrots somewhere else.",
                 choices: ["Go back to the main road"],
                 nextScene: [35]
             }    
@@ -251,10 +253,24 @@ function getScene() {
             return {
                 description: "There it is! As you walk further downstream, you see the outlines of a bridge. And not just any bridge. It is the bridge of dreams, the bridge of legends, the famous GUINEA PIG BRIDGE that you heard so much about. How wonderful to be able to see it with your own eyes! And even walk over it! This is a day you will never forget.",
                 choices: ["Cross the bridge"],
-                nextScene: [40]
+                nextScene: [40],
+                video: true
             }    
+        case 40:
+            return {
+                description:"At the other end of the bridge you arrive at a huge carrot field. Carrots everywhere! You're the happiest guinea pig in the world!",
+                choices: ["🥕🥕🥕🥕🥕<br>Pick carrots<br>🥕🥕🥕🥕🥕"],
+                nextScene: [41]
+            }
+        case 41:
+            return {
+                description: "You pick as many carrots as you can fit into your backpack. You now have " + printCarrots(10) + " in your backpack.",
+                choices: ["Start over"],
+                nextScene: [0]
+            }
 
  
 
     }        
 }
+

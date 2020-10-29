@@ -8,23 +8,29 @@
     <script defer src="./scenes.js"></script>
     <script defer src="./script.js"></script>
 </head>
-<body>
+<body id="whole-page">
     <header>
         <h1 id="title">🐹🐹🐹🌈Fluffy Guinea Pig Adventure!🌈🐹🐹🐹</h1>
     </header>
     <div class= "flex vertical center">
-
+        <div id="guineapigbridge">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/bq9ghmgqoyc" frameborder="0" allow="accelerometer; autoplay; 
+            clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
         <div id="textbox">
-            <p>Welcome to Fluffy Guinea Pig Adventure! <br>
+            <p class="welcome">Welcome to Fluffy Guinea Pig Adventure! <br>
             Please choose your character:</p>
         </div>
+        <div id="guineapigbridge">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/bq9ghmgqoyc" frameborder="0" allow="accelerometer; autoplay; 
+            clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>       
         <div class="flex">
             <button id="button-1"> <img class="character-img" src="./images/Ruben.jpg">Ruben</button>
             <button id="button-2"> <img class="character-img"src="./images/Tristan.jpg">Tristan </button>
             <button id="button-3"></button>
         </div>
         <div id="player-info"></div>
-
 
     </div>
 </body>
