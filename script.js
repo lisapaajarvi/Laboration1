@@ -1,29 +1,46 @@
 /** Reloads the page if the title is clicked */
 let titleReload = document.getElementById("title");
 titleReload.onclick = function() {
-    document.location.reload(true);
-    return false;
+    window.location = "";
 }
-/** A box that displays the description of each scene */
+
+/** @type {HTMLDivElement} A box that displays the description of each scene */
 let text = document.getElementById("textbox");
 
+/** @type {HTMLButtonElement} A button for choice 1*/
 let button1 = document.getElementById("button-1");
+
+/** @type {HTMLButtonElement} A button for choice 2*/
 let button2 = document.getElementById("button-2");
+
+/** @type {HTMLButtonElement} A button for choice 3*/
 let button3 = document.getElementById("button-3");
 
-/** A box that displays an image of the character and the carrot backpack */
+/** @type {HTMLDivElement} A box that displays an image of the character and the carrot backpack */
 let playerInfo = document.getElementById("player-info");
 
+/** A variable that stores the name of the character */
 let playerID = ""
+
+/** @type {HTMLImageElement} An image of the character Tristan*/
 let tristanImage = document.getElementById("tristan-img");
+
+/** @type {HTMLImageElement} An image of the character Ruben*/
 let rubenImage = document.getElementById("ruben-img");
+
+/** @type {HTMLDivElement} A container for the carrot backpack */
 let backpackContainer = document.getElementById("carrot-backpack-container");
+
+/** @type {HTMLDivElement} A box that displays the number of carrots the player has */
 let backpack = document.getElementById("carrot-backpack");
 
+/** A variable that stores the number of carrots the player has */
 let carrots = 0;
+
+/** A variable that stores the number of the current scene */
 let currentScene = 0;
 
-/** Chooses the character Tristan, adds photo and backpack, and starts game */
+/** Chooses the character Tristan, adds image and carrot backpack, and starts game */
 function chooseTristan(){
     playerID = "Tristan";
     playerInfo.appendChild(tristanImage);
@@ -31,7 +48,8 @@ function chooseTristan(){
     backpackContainer.style.display = "flex";
     presentScene();
 }
-/** Chooses the character Ruben, adds photo and backpack, and starts game */
+
+/** Chooses the character Ruben, adds image and carrot backpack, and starts game */
 function chooseRuben(){
     playerID = "Ruben";
     playerInfo.appendChild(rubenImage);
@@ -41,8 +59,9 @@ function chooseRuben(){
 }
 
 /**
- * Adds a number to the variable carrots, then returns it with "carrot" or "carrots" added
- * @param {Number} addedcarrots 
+ * Adds a number to the variable carrots and returns the total number with "carrot" or "carrots"
+ * @param {Number} addedcarrots number of carrots added
+ * @returns {String} text with number of carrots
  */
 function printCarrots (addedcarrots){
     carrots = carrots + addedcarrots;
@@ -53,11 +72,11 @@ function printCarrots (addedcarrots){
         return carrots + " carrots"
     }
 }
-/** 
- * Calculates how many carrots are left until mission accomplished, 
- * and returns the number with "carrot" or "carrots" added  
- */
 
+/** 
+ * Calculates how many carrots are left until mission accomplished, and returns the total number with "carrot" or "carrots"
+ * @returns {String} text with number of carrots
+ */
 function printCarrotsLeft (){
     let carrotsLeft = 5 - carrots;
     if(carrotsLeft === 1) {
@@ -68,6 +87,9 @@ function printCarrotsLeft (){
     }
 }   
 
+/**
+ * Displays how many carrots the player has with carrot emojis inside the div "backpack"
+ */
 function showCarrotsInBackpack() {
     if (carrots === 1){
         backpack.innerHTML = "🥕"
@@ -82,11 +104,14 @@ function showCarrotsInBackpack() {
         backpack.innerHTML = "🥕🥕🥕🥕"        
     }
     else if (carrots >= 5){
-        backpack.innerHTML = "🥕🥕🥕🥕<br>🥕🥕🥕🥕"
-            
+        backpack.innerHTML = "🥕🥕🥕🥕<br>🥕🥕🥕🥕"       
     }
 }
 
+/**
+ * Displays the correct number of buttons (1-3) for each scene
+ * @param {Number} numberOfButtons 
+ */
 function showButtons(numberOfButtons) {
     if (numberOfButtons === 3){
         button3.style.display = "flex";
@@ -101,36 +126,34 @@ function showButtons(numberOfButtons) {
         button2.style.display = "none";
     }
 }
-function playVideo() {
+
+/**
+ * Displays or hides a video of the Guinea Pig Bridge
+ * @param {Boolean} videoAvailable shows if there is an available video or not
+ */
+function showVideo(videoAvailable) {
     let guineaPigBridge = document.getElementById("guineapigbridge");
-    if (scene.video === true) {
+    if (videoAvailable === true) {
         guineaPigBridge.style.display = "flex";
         }
-    else if (scene.video === false) {
+    else if (videoAvailable === false) {
         guineaPigBridge.style.display = "none";
     }
 }
 
 /**
- * 
+ * Presents the scene with a description and buttons with descriptions for each choice
  */
 function presentScene(){
-    let scene = getScene();    
+    if (carrots >= 5){
+        currentScene = 41;
+    }
+    let scene = getScene();   
     showButtons(scene.choices.length);
     text.innerHTML = scene.description;
     button1.innerHTML = scene.choices[0];
     button2.innerHTML = scene.choices[1];
     button3.innerHTML = scene.choices[2];
-/*
-    if (carrots >= 5){
-        alert("Congratulations! Your backpack is full of carrots! Your mission was successful, and you can now return to your village.")
-        button3.style.display = "none";
-        button2.style.display = "none";
-        button1.style.display = "none";
-        body.backgroundImage = "url(./images/carrots.jpg)";
-        text.innerHTML = "All the other guinea pigs welcome you home and throw a big party. You will always be remembered as " + playerID + ", the very brave and fluffy guinea pig hero!"
-    }
-*/
     button1.onclick = function() {
         currentScene = scene.nextScene[0]; 
         presentScene();      
@@ -143,7 +166,7 @@ function presentScene(){
         currentScene = scene.nextScene[2];
         presentScene();
     }
-    //playVideo();
+    showVideo(scene.video);
     showCarrotsInBackpack();
 }    
 

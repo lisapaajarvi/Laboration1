@@ -235,7 +235,7 @@ function getScene() {
                 nextScene: [32, 33]
             }
  
-// THE RIVER 37-
+// THE RIVER 37-40
         
         case 37:
             return {
@@ -262,23 +262,14 @@ function getScene() {
                 nextScene: [41],
                 video: true
             }
+ // FINAL SCENE           
         case 41:
             return {
-                description:"",
-                choices: "",
-                nextScene: [],
-                video: false
-            }
-        case 42:
-            return {
-                description: "You pick as many carrots as you can fit into your backpack. You now have " + printCarrots(10) + " in your backpack.",
+                description:"Congratulations! You saved the Fluffy Guinea Pig Village! All the other guinea pigs welcome you home and throw a big party. You will always be remembered as " + playerID + ", the very brave and fluffy guinea pig hero!",
                 choices: ["Start over"],
-                nextScene: [0],
+                nextScene: [-1],
                 video: false
             }
-
- 
-
     }        
 }
 
