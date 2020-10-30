@@ -267,7 +267,7 @@ function getScene() {
             return {
                 description:"Congratulations! You saved the Fluffy Guinea Pig Village! All the other guinea pigs welcome you home and throw a big party. You will always be remembered as " + playerID + ", the very brave and fluffy guinea pig hero!",
                 choices: ["Start over"],
-                nextScene: [-1],
+                nextScene: [41],
                 video: false
             }
     }        

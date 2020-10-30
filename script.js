@@ -1,6 +1,6 @@
 /** Reloads the page if the title is clicked */
-let titleReload = document.getElementById("title");
-titleReload.onclick = function() {
+let mainTitle = document.getElementById("title");
+    mainTitle.onclick = function() {
     window.location = "";
 }
 
@@ -109,7 +109,7 @@ function showCarrotsInBackpack() {
 }
 
 /**
- * Displays the correct number of buttons (1-3) for each scene
+ * Displays or hides buttons (1-3) for each scene
  * @param {Number} numberOfButtons 
  */
 function showButtons(numberOfButtons) {
@@ -154,6 +154,11 @@ function presentScene(){
     button1.innerHTML = scene.choices[0];
     button2.innerHTML = scene.choices[1];
     button3.innerHTML = scene.choices[2];
+    if (currentScene = 41){
+        button1.onclick = function() {
+        window.location = "";
+        }
+    }
     button1.onclick = function() {
         currentScene = scene.nextScene[0]; 
         presentScene();      
