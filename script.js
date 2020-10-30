@@ -1,6 +1,8 @@
-/** Reloads the page if the title is clicked */
+/** @type {HTMLHeadingElement} Main heading of the page */
 let mainTitle = document.getElementById("title");
-    mainTitle.onclick = function() {
+
+/** Reloads the page when the main heading is clicked */
+mainTitle.onclick = function() {
     window.location = "";
 }
 
@@ -103,8 +105,11 @@ function showCarrotsInBackpack() {
     else if (carrots === 4){
         backpack.innerHTML = "🥕🥕🥕🥕"        
     }
-    else if (carrots >= 5){
-        backpack.innerHTML = "🥕🥕🥕🥕<br>🥕🥕🥕🥕"       
+    else if (carrots === 5){
+        backpack.innerHTML = "🥕🥕🥕🥕🥕"        
+    }
+    else if (carrots > 5){
+        backpack.innerHTML = "🥕🥕🥕🥕🥕<br>🥕🥕🥕🥕🥕"       
     }
 }
 
@@ -145,23 +150,31 @@ function showVideo(videoAvailable) {
  * Presents the scene with a description and buttons with descriptions for each choice
  */
 function presentScene(){
+    
+
+
+    let scene = getScene();   
     if (carrots >= 5){
         currentScene = 41;
+        scene = getScene();
     }
-    let scene = getScene();   
+    
     showButtons(scene.choices.length);
     text.innerHTML = scene.description;
     button1.innerHTML = scene.choices[0];
     button2.innerHTML = scene.choices[1];
     button3.innerHTML = scene.choices[2];
-    if (currentScene = 41){
+    if (currentScene === 41){
         button1.onclick = function() {
         window.location = "";
         }
+        carrots = 10;
     }
-    button1.onclick = function() {
-        currentScene = scene.nextScene[0]; 
-        presentScene();      
+    else {
+        button1.onclick = function() {
+            currentScene = scene.nextScene[0]; 
+            presentScene();      
+        }
     } 
     button2.onclick = function() {
         currentScene = scene.nextScene[1];
