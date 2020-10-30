@@ -23,7 +23,21 @@ header {
     margin-bottom: 2rem;
 }
 #player-info {
-    height: 2rem;
+    display: flex;
+
+
+}
+#carrot-backpack-container {
+    height: 8rem;
+    width: 12rem;
+    border-radius: 1rem;
+    border: 0.2rem dotted orange;
+    margin: 1rem;
+    display: none;
+    color: green;
+    align-items: center;
+    flex-direction: column;
+
 }
 #guineapigbridge {
     display: none;
